@@ -3,6 +3,7 @@ import Blog from "../../Component/Blog/Blog/Blog";
 import Courses from "../../Component/Courses/Courses/Courses";
 import FAQ from "../../Component/FAQ/FAQ/FAQ";
 import Main from "../../layout/Main";
+import Home from "../Home/Home";
 
 
     export const routes=createBrowserRouter([
@@ -12,6 +13,11 @@ import Main from "../../layout/Main";
             children:[
                 {
                     path:'/',
+                    element:<Home></Home>
+
+                },
+                {
+                    path:'/courses/:id',
                     element:<Courses></Courses>
                 },
                 {

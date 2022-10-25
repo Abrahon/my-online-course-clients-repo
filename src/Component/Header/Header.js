@@ -13,10 +13,12 @@ const Header = () => {
         <Navbar.Brand><h1 className='text-danger'>Programming Typhoon</h1>
 
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle gitaria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-          <Nav.Link > <Link to={'/'}>Courses</Link> </Nav.Link>
+          <Nav.Link> <Link to={'/'}>Home</Link></Nav.Link>
+
+          <Nav.Link > <Link to={'/courses/:id'}>Courses</Link> </Nav.Link>
             <Nav.Link> <Link to={'/faq'}>FAQ</Link></Nav.Link>
             <Nav.Link> <Link to={'/blog'}>Blog</Link></Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
