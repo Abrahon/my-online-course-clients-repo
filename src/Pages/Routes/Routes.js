@@ -1,7 +1,10 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Route } from "react-router-dom";
 import Blog from "../../Component/Blog/Blog/Blog";
+import Category from "../../Component/Category/Category/Category";
 import Courses from "../../Component/Courses/Courses/Courses";
-import FAQ from "../../Component/FAQ/FAQ/FAQ";
+import Error from "../../Component/Error/Error";
+
+
 import Main from "../../layout/Main";
 import Home from "../Home/Home";
 
@@ -21,15 +24,24 @@ import Home from "../Home/Home";
                     element:<Courses></Courses>
                 },
                 {
-                    path:'/FAQ/',
-                    element:<FAQ></FAQ>
+                    path:'/category',
+                    element:<Category></Category>
                 },
+               
+              
                 {
                     path:'/Blog/',
                     element:<Blog></Blog>
                 },
+                // {
+                //     path:"*",
+                //     element:<Error></Error>
+                // }
+               
     
             ]
+
+           
         }
     ])
    

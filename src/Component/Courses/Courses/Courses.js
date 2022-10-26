@@ -9,12 +9,12 @@ const Courses = () => {
         <div>
            <Container>
             <Row>
-                <Col>
+                <Col lg="4">
                 <h2>First column</h2>
                 <LeftSideNav></LeftSideNav>
                 </Col>
                 
-                <Col>
+                <Col lg="8">
                 <h3>Second column</h3>
                 <RightSideNav></RightSideNav>
                 </Col>

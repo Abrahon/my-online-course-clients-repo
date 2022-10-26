@@ -16,7 +16,7 @@ const LeftSideNav = () => {
             <h3>left categories:{categories.length}</h3>
             <div >
                 {
-                    categories.map(category=> <button className='d-flex w-50 p-2 mb-2 align-items-center justify-content-center' key={category.id}>
+                    categories.map(category=> <button className='d-flex w-50 p-2 mb-2 align-items-center justify-content-center ' key={category.id}>
                         <Link to={`/category/${category.id}`}>{category.name}</Link>
 
                        </button> )

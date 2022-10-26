@@ -10,10 +10,10 @@ const Header = () => {
     return (
         <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand><h1 className='text-danger'>Programming Typhoon</h1>
+        <Navbar.Brand><h1 className='text-danger '>Programming Typhoon</h1>
 
         </Navbar.Brand>
-        <Navbar.Toggle gitaria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
           <Nav.Link> <Link to={'/'}>Home</Link></Nav.Link>
