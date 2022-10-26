@@ -1,12 +1,19 @@
 import React from 'react';
+import { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+
+import { FaUserTie } from "react-icons/fa";
+import { Image } from 'react-bootstrap';
+
 
 
 const Header = () => {
+  const {user}=useContext(AuthContext)
     return (
         <Navbar bg="light" expand="lg">
       <Container>
@@ -33,9 +40,23 @@ const Header = () => {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
+          <Nav>
+            <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
+            <Nav.Link eventKey={2} href="#memes">
+            {user.photoURL ?
+           
+            <Image style={{height:'20'}} roundedCircle src ={user.photoURL}></Image>
+            :<FaUserTie></FaUserTie>
+}  
+            
+           
+            </Nav.Link>
+          </Nav>
+       
         </Navbar.Collapse>
       </Container>
     </Navbar>
+ 
     );
 };
 

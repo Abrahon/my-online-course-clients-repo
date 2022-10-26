@@ -1,29 +1,33 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React from 'react';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import { useContext } from 'react';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+
+
 
 const RightSideNav = () => {
+    const {providerLogin}= useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider()
+    
+    const handleGoogleSignIn=()=>{
+        providerLogin(googleProvider)
+    .then(result=>{
+        const user =result.user;
+        console.log(user);
+    })
+    .catch(error=>console.error(error))
+
+    }
     return (
         <div>
-             <Row xs={1} md={2} className="g-4">
-      {Array.from({ length: 6 }).map((_, idx) => (
-        <Col>
-          <Card>
-            <Card.Img variant="top" src="holder.js/100px160" />
-            <Card.Body>
-              <Card.Title>Card title</Card.Title>
-              <Card.Text>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      ))}
-    </Row>
-       
+            <h3>Right side nav</h3>
+            <ButtonGroup vertical>
+                <Button onClick={handleGoogleSignIn} className='mb-2' variant="outline-primary"> Login with Google</Button>
+                <Button variant="outline-dark"> Login with Github</Button>
+            </ButtonGroup>
+
         </div>
     );
 };

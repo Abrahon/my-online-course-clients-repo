@@ -1,7 +1,7 @@
 import { createBrowserRouter, Route } from "react-router-dom";
 import Blog from "../../Component/Blog/Blog/Blog";
-import Category from "../../Component/Category/Category/Category";
 import Courses from "../../Component/Courses/Courses/Courses";
+import RightSideNav from "../../Component/Courses/RightSideNav/RightSideNav";
 import Error from "../../Component/Error/Error";
 
 
@@ -16,17 +16,23 @@ import Home from "../Home/Home";
             children:[
                 {
                     path:'/',
-                    element:<Home></Home>
+                    element:<Home></Home>,
+                    loader:()=>fetch(`http://localhost:5000/courses`)
 
                 },
                 {
-                    path:'/courses/:id',
-                    element:<Courses></Courses>
+                    path:'/rightSideNav',
+                    element:<RightSideNav></RightSideNav>,
+                    // loader:()=>fetch(`http://localhost:5000/courses`)
                 },
+                
+                
                 {
-                    path:'/category',
-                    element:<Category></Category>
+                    path:'/courses/:id',
+                    element:<Courses></Courses>,
+                    // loader:({params})=>fetch(`http://localhost:5000/courses/${params.id}`)
                 },
+                
                
               
                 {
