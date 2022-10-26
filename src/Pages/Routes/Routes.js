@@ -33,10 +33,10 @@ import Home from "../Home/Home";
                     path:'/Blog/',
                     element:<Blog></Blog>
                 },
-                // {
-                //     path:"*",
-                //     element:<Error></Error>
-                // }
+                {
+                    path:"*",
+                    element:<Error></Error>
+                }
                
     
             ]
