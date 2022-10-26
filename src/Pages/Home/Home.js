@@ -1,11 +1,17 @@
 import React from 'react';
+import img from './img.png'
 
 const Home = () => {
     return (
-        <div>
-    
-            <img src= "https://images.app.goo.gl/tjFiSczuorXqg9wW6" alt="" />
+        <div className=' d-flex justify-content-around'>
+            <div>
+                <h2>Web course</h2>
+
+            </div>
+            
+           <img className='w-50' src={img} alt="" />
         </div>
+        
     );
 };
 
