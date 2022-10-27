@@ -9,6 +9,8 @@ import Main from "../../layout/Main";
 import Home from "../Home/Home";
 import Login from "../Login/Login/Login";
 import Register from "../Login/Register/Register";
+import TermsAndCondition from "../Others/TermsAndCondition/TermsAndCondition";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 
     export const routes=createBrowserRouter([
@@ -19,7 +21,7 @@ import Register from "../Login/Register/Register";
                 {
                     path:'/',
                     element:<Home></Home>,
-                    loader:()=>fetch(`http://localhost:5000/courses`)
+                    //loader:()=>fetch(`http://localhost:5000/courses`)
 
                 },
                 {
@@ -31,8 +33,7 @@ import Register from "../Login/Register/Register";
                 
                 {
                     path:'/courses/:id',
-                    element:<Courses></Courses>,
-                    // loader:({params})=>fetch(`http://localhost:5000/courses/${params.id}`)
+                    element:<PrivateRoute><Courses></Courses></PrivateRoute>
                 },
                 {
                     path:'/login',
@@ -42,6 +43,11 @@ import Register from "../Login/Register/Register";
                 {
                     path:'/register',
                     element:<Register></Register>
+                },
+                {
+                    path:'/terms',
+                    element:<TermsAndCondition></TermsAndCondition>
+
                 },
                 
                 {

@@ -1,13 +1,18 @@
 import React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
 
-    const {createUser} = useContext(AuthContext);
+  const [error,setError] = useState('');
+  const [accepted, setAccepted] = useState(false)
+  const {createUser,updateUserProfile} = useContext(AuthContext);
+    
         
     
 
@@ -24,9 +29,27 @@ const Register = () => {
         .then(result=>{
             const user = result.user;
             console.log(user);
+            setError('');
             form.reset();
+            handleUpdateUserProfile(name,photoURL)
         })
-        .catch(e=>console.error(e));
+        .catch(e=>{
+          console.error(e);
+          setError(e.message);
+        }); 
+        
+    }
+    const handleUpdateUserProfile = (name,photoURL)=>{
+      const profile = {
+        displayName:name,
+        photoURL:photoURL
+      }
+      updateUserProfile(profile)
+      .then(()=>{})
+      .catch(error=>console.error(error));
+    }
+    const handleAccepted = event=>{
+      setAccepted(event.target.checked)
     }
     return (
         <Container className='w-50'>
@@ -51,14 +74,21 @@ const Register = () => {
         <Form.Label>Password</Form.Label>
         <Form.Control name="password" type="password" placeholder="password" required/>
       </Form.Group>
+        
+      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        <Form.Check 
+        type="checkbox"
+        onClick={handleAccepted}
+         label={<>Accept <Link to='/terms'>Term and condition</Link></> } />
+      </Form.Group>
     
      
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" disabled={!accepted}>
         Register
       </Button>
-      {/* <Form.Text className="text-danger">
-          We'll never share your email with anyone else.
-        </Form.Text> */}
+      <Form.Text className="text-danger">
+         {error}
+        </Form.Text>
      </Form>
         </Container>
     );

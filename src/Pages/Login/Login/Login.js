@@ -1,16 +1,23 @@
 import React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 
 const Login = () => {
 
+    const [error, setError]= useState('');
     const {signIn} = useContext(AuthContext);
     const navigate = useNavigate()
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
+
+
+
     const handleSubmit = event=>{
         event.preventDefault();
         const form = event.target;
@@ -21,9 +28,17 @@ const Login = () => {
             const user = result.user;
             console.log(user);
             form.reset();
-            navigate('/')
+            setError('');
+            navigate(from, {replace:true});
         })
-        .catch(error=>console.log(error))
+        .catch(error=>{
+          console.error(error)
+          setError(error.message);
+
+        })
+        .catch(error=>
+          console.log(error))
+          setError(error.message);
     }
     return (
         <div>
@@ -39,16 +54,17 @@ const Login = () => {
         <Form.Label>Password</Form.Label>
         <Form.Control name="password" type="password" placeholder="Password" required/>
       </Form.Group>
-      {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
+      
+      <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group> */}
+      </Form.Group>
      
       <Button variant="primary" type="submit">
         Login
       </Button>
-      {/* <Form.Text className="text-danger">
-          We'll never share your email with anyone else.
-        </Form.Text> */}
+      <Form.Text className="text-danger">
+        {error}
+        </Form.Text>
     </Form>
     </Container>
         </div>
