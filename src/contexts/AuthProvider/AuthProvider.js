@@ -4,6 +4,10 @@ import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVe
 import app from '../../firebase/firebase';
 import { useState } from 'react';
 import { useEffect } from 'react';
+// import { getAuth } from 'firebase/auth'
+
+
+
 
  export const AuthContext = createContext()
  const auth =getAuth(app)

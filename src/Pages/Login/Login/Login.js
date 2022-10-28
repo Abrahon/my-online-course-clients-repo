@@ -7,6 +7,12 @@ import Form from 'react-bootstrap/Form';
 import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import { FaGoogle} from "react-icons/fa";
+// import { GoogleAuthProvider } from "firebase/auth";
+
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import { GoogleAuthProvider } from 'firebase/auth';
+
 
 
 const Login = () => {
@@ -51,11 +57,27 @@ const Login = () => {
        
          
     }
+    const {providerLogin}=useContext(AuthContext);
+
+    const googleProvider = new GoogleAuthProvider()
+
+    const handleGooglSignIn=()=>{
+      providerLogin(googleProvider)
+      .then(result=>{
+        const user = result.user;
+
+      })
+      .catch(error=>console.error(error))
+
+    }
     return (
-        <div>
-            <Container className='w-25 bg-'>
+        <div className=''>
+          
+            <Container className='w-25'>
+              <h1>Login</h1>
+              
             <Form onSubmit = {handleSubmit}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3 " controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control name="email" type="email" placeholder="Enter email" required/>
         
@@ -69,13 +91,21 @@ const Login = () => {
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
+      <div className='d-flex justify-content-between'>
      
-      <Button variant="primary" type="submit">
+      <Button  variant="primary" type="submit">
         Login
       </Button>
+      
       <Form.Text className="text-danger">
         {error}
         </Form.Text>
+     
+              <ButtonGroup vertical>
+                <Button onClick={handleGooglSignIn} className='mb-2' variant="outline-primary"><FaGoogle></FaGoogle> Login with Google</Button> 
+            </ButtonGroup>
+            </div>
+      
     </Form>
     </Container>
         </div>

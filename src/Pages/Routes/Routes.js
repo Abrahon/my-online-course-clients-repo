@@ -10,6 +10,7 @@ import Home from "../Home/Home";
 import Login from "../Login/Login/Login";
 import Register from "../Login/Register/Register";
 import TermsAndCondition from "../Others/TermsAndCondition/TermsAndCondition";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 //import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 
@@ -40,7 +41,7 @@ export const routes = createBrowserRouter([
 
             {
                 path: '/checkout',
-                element: <Checkout></Checkout>,
+                element: <PrivateRoute><Checkout></Checkout></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`)
 
             },

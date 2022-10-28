@@ -19,7 +19,9 @@ const Course = ({ course }) => {
                     <Card.Title>{course_name}</Card.Title>
                     <Card.Title>{title}</Card.Title>
                     <Card.Text>{details.slice(0, 150) + '....'}</Card.Text>
-                    <Card.Text>{price}</Card.Text>
+                    <Card.Text > <h3 className='fw-bold text-success'>Price : {price}</h3>
+
+                    </Card.Text>
 
 
 
