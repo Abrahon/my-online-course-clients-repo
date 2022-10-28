@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
@@ -11,10 +12,10 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 const Login = () => {
 
     const [error, setError]= useState('');
-    const {signIn} = useContext(AuthContext);
+    const {signIn,setLoading} = useContext(AuthContext);
     const navigate = useNavigate()
     const location = useLocation();
-    const from = location.state?.from?.pathname || '/'
+    const from = location.state?.from?.pathname || '/';
 
 
 
@@ -23,26 +24,36 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password =form.password;
+
+
         signIn(email,password)
         .then(result=>{
             const user = result.user;
             console.log(user);
             form.reset();
             setError('');
-            navigate(from, {replace:true});
+            if(user.emailVerified){
+              navigate(form,{replace:true});
+            }
+            else{
+              toast.error('Your mail is  not verified.Please verified email')
+            }
         })
+
         .catch(error=>{
-          console.error(error)
+          console.log(error)
           setError(error.message);
+        })
+        .finally(()=>{
+          setLoading(false);
 
         })
-        .catch(error=>
-          console.log(error))
-          setError(error.message);
+       
+         
     }
     return (
         <div>
-            <Container className='w-50'>
+            <Container className='w-25'>
             <Form onSubmit = {handleSubmit}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
@@ -54,7 +65,7 @@ const Login = () => {
         <Form.Label>Password</Form.Label>
         <Form.Control name="password" type="password" placeholder="Password" required/>
       </Form.Group>
-      
+
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>

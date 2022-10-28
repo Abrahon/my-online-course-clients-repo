@@ -1,6 +1,6 @@
 import React, { Profiler } from 'react';
 import { createContext } from 'react';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth'
+import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth'
 import app from '../../firebase/firebase';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -28,6 +28,9 @@ const AuthProvider = ({children}) => {
     const updateUserProfile = (profile)=>{
         return updateProfile(auth.currentUser,profile);
     }
+    const verifyEmail =()=>{
+        return sendEmailVerification(auth.currentUser);
+    }
 
     const logOut = ()=>{
         setLoading(true)
@@ -36,7 +39,9 @@ const AuthProvider = ({children}) => {
     useEffect( ()=>{
     const unsubscribe =  onAuthStateChanged(auth,(currentUser)=>{
             console.log('inside auth state change',currentUser);
+           if(currentUser === null || currentUser.emailVerified){
             setUser(currentUser)
+           }
             setLoading(false);
         });
         return ()=>{
@@ -48,8 +53,10 @@ const AuthProvider = ({children}) => {
         user,
         loading,
         providerLogin,
+        setLoading,
         logOut,
         updateUserProfile,
+        verifyEmail,
         createUser,
         signIn
     };

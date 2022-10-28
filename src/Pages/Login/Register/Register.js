@@ -1,18 +1,20 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
 
   const [error,setError] = useState('');
   const [accepted, setAccepted] = useState(false)
-  const {createUser,updateUserProfile} = useContext(AuthContext);
-    
+  const {createUser,updateUserProfile,verifyEmail} = useContext(AuthContext);
+   const navigate =useNavigate() 
         
     
 
@@ -32,6 +34,10 @@ const Register = () => {
             setError('');
             form.reset();
             handleUpdateUserProfile(name,photoURL)
+            handleEmailVerification();
+            toast.success('please verify your email address.');
+            navigate('/')
+            
         })
         .catch(e=>{
           console.error(e);
@@ -48,13 +54,25 @@ const Register = () => {
       .then(()=>{})
       .catch(error=>console.error(error));
     }
+    const handleEmailVerification=()=>{
+      verifyEmail()
+        .then(()=>{})
+        .catch(error=>console.error(error));
+      
+    }
     const handleAccepted = event=>{
       setAccepted(event.target.checked)
     }
+  // //  useEffect(()=>{useEffect((),)
+  //   if(user){
+  //   }
+  //  },[user,navigate])
     return (
-        <Container className='w-50'>
+        <Container className='w-25'>
          <Form onSubmit={handleSubmit}>
+         <Form.Label><h1 className=''>Register</h1></Form.Label>
       <Form.Group className="mb-3" controlId="formBasicEmail">
+     
         <Form.Label>Your Name</Form.Label>
         <Form.Control name="name" type="name" placeholder="Your Name" />
         

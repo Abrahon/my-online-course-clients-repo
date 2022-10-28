@@ -8,7 +8,10 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import Button from 'react-bootstrap/Button';
 import { FaUserTie } from "react-icons/fa";
-import { ButtonToolbar, Image } from 'react-bootstrap';
+ import { ButtonToolbar, Image } from 'react-bootstrap';
+// import  {Component} from 'react';
+// import {render} from 'react-dom';
+// import Switch from 'react-toggle-switch'
 
 
 
@@ -30,7 +33,7 @@ const Header = () => {
           <Nav className="ms-auto">
           <Nav.Link> <Link to={'/'}>Home</Link></Nav.Link>
 
-          <Nav.Link > <Link to={'/courses/:id'}>Courses</Link> </Nav.Link>
+          <Nav.Link > <Link to={'/courses'}>Courses</Link> </Nav.Link>
             <Nav.Link> <Link to={'/faq'}>FAQ</Link></Nav.Link>
             <Nav.Link> <Link to={'/blog'}>Blog</Link></Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
@@ -63,7 +66,7 @@ const Header = () => {
             <Nav.Link eventKey={2} href="#memes">
             {user?.photoURL ?
            
-            <Image style={{height:'20'}} roundedCircle src ={user?.photoURL}></Image>
+            <Image style={{height:'25'}} roundedCircle src ={user?.photoURL}></Image>
             :<FaUserTie></FaUserTie>
 }  
             
