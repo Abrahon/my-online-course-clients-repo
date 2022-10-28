@@ -10,6 +10,7 @@ const Home = () => {
             </div>
             
            <img className='w-50' src={img} alt="" />
+           <p>hdgdyuds j</p>
         </div>
         
     );

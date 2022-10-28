@@ -53,7 +53,7 @@ const Login = () => {
     }
     return (
         <div>
-            <Container className='w-25'>
+            <Container className='w-25 bg-'>
             <Form onSubmit = {handleSubmit}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>

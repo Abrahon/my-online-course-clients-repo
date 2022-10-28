@@ -4,8 +4,7 @@ import Checkout from "../../Component/Checkout/Checkout";
 import CourseDetails from "../../Component/CourseDetails/CourseDetails";
 import Courses from "../../Component/courses/Courses";
 import Error from "../../Component/Error/Error";
-
-
+import FAQ from "../../Component/FAQ/FAQ/FAQ";
 import Main from "../../layout/Main";
 import Home from "../Home/Home";
 import Login from "../Login/Login/Login";
@@ -44,6 +43,10 @@ export const routes = createBrowserRouter([
                 element: <Checkout></Checkout>,
                 loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`)
 
+            },
+            {
+                path:'/faq/',
+                element:<FAQ></FAQ>
             },
             {
                 path: '/login',

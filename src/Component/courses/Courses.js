@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+// import { Col, Container, Row } from 'react-bootstrap';
 import { useLoaderData } from 'react-router';
 import Course from '../Course/Course';
 import SideNav from '../SideNav/SideNav';
@@ -12,10 +12,10 @@ const Courses = () => {
            <div>
            
 
-        <div className='d-flex'>
+        <div className='d-flex justify-content-center '>
             <div>
                 {/* Total data : {courses.length} */}
-                <h2>Our Courses</h2>
+                <h3 className='ms-5 w-100 text-success'>Our Courses</h3>
                 {
                     courses.map(course => <SideNav
                         key={course.id}
@@ -24,7 +24,7 @@ const Courses = () => {
                 }
             </div>
 
-                <div className="row row-cols-2 m-auto ">
+                <div className="row row-cols-2 flex-direction-column m-5 ">
          
                   {
                     courses.map(course => <Course

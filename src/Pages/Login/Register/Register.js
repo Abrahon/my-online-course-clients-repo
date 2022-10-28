@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { Container } from 'react-bootstrap';
@@ -14,6 +14,7 @@ const Register = () => {
   const [error,setError] = useState('');
   const [accepted, setAccepted] = useState(false)
   const {createUser,updateUserProfile,verifyEmail} = useContext(AuthContext);
+  console.log(createUser)
    const navigate =useNavigate() 
         
     
@@ -32,11 +33,12 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             setError('');
-            form.reset();
             handleUpdateUserProfile(name,photoURL)
             handleEmailVerification();
             toast.success('please verify your email address.');
             navigate('/')
+            form.reset();
+
             
         })
         .catch(e=>{
